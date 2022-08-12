@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LearningManagementSystem.Models.cours>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    body {
+        background-color: #091b1a;
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    th {
+        color: black;
+        font-size: 20px
+    }
+
+    td {
+        font-size: 15p;
+        color: white
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Slot)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slot)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Cid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Cid })
+            </td>
+        </tr>
+    }
+
+</table>
+<a>@Html.ActionLink("Back To Main Page", "Index", "Admin")</a>
+

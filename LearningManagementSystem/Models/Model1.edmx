@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabasefileModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="Admin_id" />
+          </Key>
+          <Property Name="Admin_id" Type="int" Nullable="false" />
+          <Property Name="AdminPassword" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="Cid" />
+          </Key>
+          <Property Name="Cid" Type="int" Nullable="false" />
+          <Property Name="Cname" Type="varchar" MaxLength="20" />
+          <Property Name="CreditHours" Type="varchar" MaxLength="20" />
+          <Property Name="Slot" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="did" />
+          </Key>
+          <Property Name="did" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="registraton">
+          <Key>
+            <PropertyRef Name="Regid" />
+          </Key>
+          <Property Name="Regid" Type="int" Nullable="false" />
+          <Property Name="Cid" Type="int" />
+          <Property Name="Tid" Type="int" />
+          <Property Name="stdid" Type="int" />
+          <Property Name="did" Type="int" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="stdid" />
+          </Key>
+          <Property Name="stdid" Type="int" Nullable="false" />
+          <Property Name="StdName" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="20" />
+          <Property Name="SPassword" Type="varchar" MaxLength="20" />
+          <Property Name="Age" Type="int" />
+          <Property Name="gender" Type="varchar" MaxLength="20" />
+          <Property Name="Saddress" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="Tid" />
+          </Key>
+          <Property Name="Tid" Type="int" Nullable="false" />
+          <Property Name="TName" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="20" />
+          <Property Name="TPassword" Type="varchar" MaxLength="20" />
+          <Property Name="Age" Type="int" />
+          <Property Name="gender" Type="varchar" MaxLength="20" />
+          <Property Name="Taddress" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__registrat__stdid__300424B4">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="registraton" Type="Self.registraton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="stdid" />
+            </Principal>
+            <Dependent Role="registraton">
+              <PropertyRef Name="stdid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__registraton__Cid__2E1BDC42">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="registraton" Type="Self.registraton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="Cid" />
+            </Principal>
+            <Dependent Role="registraton">
+              <PropertyRef Name="Cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__registraton__did__30F848ED">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="registraton" Type="Self.registraton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="did" />
+            </Principal>
+            <Dependent Role="registraton">
+              <PropertyRef Name="did" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__registraton__Tid__2F10007B">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="registraton" Type="Self.registraton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Tid" />
+            </Principal>
+            <Dependent Role="registraton">
+              <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabasefileModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="courses" EntityType="Self.courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="registraton" EntityType="Self.registraton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__registrat__stdid__300424B4" Association="Self.FK__registrat__stdid__300424B4">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="registraton" EntitySet="registraton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__registraton__Cid__2E1BDC42" Association="Self.FK__registraton__Cid__2E1BDC42">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="registraton" EntitySet="registraton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__registraton__did__30F848ED" Association="Self.FK__registraton__did__30F848ED">
+            <End Role="department" EntitySet="department" />
+            <End Role="registraton" EntitySet="registraton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__registraton__Tid__2F10007B" Association="Self.FK__registraton__Tid__2F10007B">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="registraton" EntitySet="registraton" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabasefileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="Admin_id" />
+          </Key>
+          <Property Name="Admin_id" Type="Int32" Nullable="false" />
+          <Property Name="AdminPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="cours">
+          <Key>
+            <PropertyRef Name="Cid" />
+          </Key>
+          <Property Name="Cid" Type="Int32" Nullable="false" />
+          <Property Name="Cname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreditHours" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Slot" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registratons" Relationship="Self.FK__registraton__Cid__2E1BDC42" FromRole="courses" ToRole="registraton" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="did" />
+          </Key>
+          <Property Name="did" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registratons" Relationship="Self.FK__registraton__did__30F848ED" FromRole="department" ToRole="registraton" />
+        </EntityType>
+        <EntityType Name="registraton">
+          <Key>
+            <PropertyRef Name="Regid" />
+          </Key>
+          <Property Name="Regid" Type="Int32" Nullable="false" />
+          <Property Name="Cid" Type="Int32" />
+          <Property Name="Tid" Type="Int32" />
+          <Property Name="stdid" Type="Int32" />
+          <Property Name="did" Type="Int32" />
+          <NavigationProperty Name="cours" Relationship="Self.FK__registraton__Cid__2E1BDC42" FromRole="registraton" ToRole="courses" />
+          <NavigationProperty Name="department" Relationship="Self.FK__registraton__did__30F848ED" FromRole="registraton" ToRole="department" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__registrat__stdid__300424B4" FromRole="registraton" ToRole="Students" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__registraton__Tid__2F10007B" FromRole="registraton" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="stdid" />
+          </Key>
+          <Property Name="stdid" Type="Int32" Nullable="false" />
+          <Property Name="StdName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Saddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registratons" Relationship="Self.FK__registrat__stdid__300424B4" FromRole="Students" ToRole="registraton" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Tid" />
+          </Key>
+          <Property Name="Tid" Type="Int32" Nullable="false" />
+          <Property Name="TName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Taddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registratons" Relationship="Self.FK__registraton__Tid__2F10007B" FromRole="Teachers" ToRole="registraton" />
+        </EntityType>
+        <Association Name="FK__registraton__Cid__2E1BDC42">
+          <End Role="courses" Type="Self.cours" Multiplicity="0..1" />
+          <End Role="registraton" Type="Self.registraton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="Cid" />
+            </Principal>
+            <Dependent Role="registraton">
+              <PropertyRef Name="Cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__registraton__did__30F848ED">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="registraton" Type="Self.registraton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="did" />
+            </Principal>
+            <Dependent Role="registraton">
+              <PropertyRef Name="did" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__registrat__stdid__300424B4">
+          <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="registraton" Type="Self.registraton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="stdid" />
+            </Principal>
+            <Dependent Role="registraton">
+              <PropertyRef Name="stdid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__registraton__Tid__2F10007B">
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="registraton" Type="Self.registraton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Tid" />
+            </Principal>
+            <Dependent Role="registraton">
+              <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabasefileEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admin" />
+          <EntitySet Name="courses" EntityType="Self.cours" />
+          <EntitySet Name="departments" EntityType="Self.department" />
+          <EntitySet Name="registratons" EntityType="Self.registraton" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <AssociationSet Name="FK__registraton__Cid__2E1BDC42" Association="Self.FK__registraton__Cid__2E1BDC42">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="registraton" EntitySet="registratons" />
+          </AssociationSet>
+          <AssociationSet Name="FK__registraton__did__30F848ED" Association="Self.FK__registraton__did__30F848ED">
+            <End Role="department" EntitySet="departments" />
+            <End Role="registraton" EntitySet="registratons" />
+          </AssociationSet>
+          <AssociationSet Name="FK__registrat__stdid__300424B4" Association="Self.FK__registrat__stdid__300424B4">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="registraton" EntitySet="registratons" />
+          </AssociationSet>
+          <AssociationSet Name="FK__registraton__Tid__2F10007B" Association="Self.FK__registraton__Tid__2F10007B">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="registraton" EntitySet="registratons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabasefileModelStoreContainer" CdmEntityContainer="DatabasefileEntities">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="DatabasefileModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+                <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="DatabasefileModel.cours">
+              <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="Cid" ColumnName="Cid" />
+                <ScalarProperty Name="Cname" ColumnName="Cname" />
+                <ScalarProperty Name="CreditHours" ColumnName="CreditHours" />
+                <ScalarProperty Name="Slot" ColumnName="Slot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="DatabasefileModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="did" ColumnName="did" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registratons">
+            <EntityTypeMapping TypeName="DatabasefileModel.registraton">
+              <MappingFragment StoreEntitySet="registraton">
+                <ScalarProperty Name="Regid" ColumnName="Regid" />
+                <ScalarProperty Name="Cid" ColumnName="Cid" />
+                <ScalarProperty Name="Tid" ColumnName="Tid" />
+                <ScalarProperty Name="stdid" ColumnName="stdid" />
+                <ScalarProperty Name="did" ColumnName="did" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="DatabasefileModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="stdid" ColumnName="stdid" />
+                <ScalarProperty Name="StdName" ColumnName="StdName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SPassword" ColumnName="SPassword" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="Saddress" ColumnName="Saddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="DatabasefileModel.Teacher">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="Tid" ColumnName="Tid" />
+                <ScalarProperty Name="TName" ColumnName="TName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TPassword" ColumnName="TPassword" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="Taddress" ColumnName="Taddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

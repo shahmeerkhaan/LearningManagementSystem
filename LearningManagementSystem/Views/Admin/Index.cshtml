@@ -1,0 +1,109 @@
+﻿@model LearningManagementSystem.Models.admin
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .login-page {
+        width: 300px;
+        height:300px;
+        background-color:navajowhite
+    }
+
+    .form {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    body {
+        background-color: #091b1a;
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        
+    }
+    a:hover{
+        color:white;
+        text-decoration:none
+    }
+    a{
+        color:white
+    }
+    .Button{
+        background-color:black;
+        text-align:center;
+        padding:5px 5px 5px 5px;
+        border-radius:10px;
+        margin:15px
+    }
+</style>
+@using (Html.BeginForm()) 
+{
+<body>
+    <div class="container">
+        <div class="row justify-content-between" style="margin-bottom:25px; margin-top:20px;">
+            <div class="col-xl-4 col-md-4 col-sm-6">
+                <div class="login-page">
+                    <img height="200" width="300" src='~/Assets/Students.png' />
+                    <div class="Button">
+                        <a>@Html.ActionLink("Add Students", "Create", "Students")</a>
+                    </div>
+                    <div class="Button">
+                        <a>@Html.ActionLink("Get Students", "Index", "Students")</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-6">
+                <div class="login-page">
+                    <img height="200" width="300" src='~/Assets/Books.jfif' />
+                    <div class="Button">
+                        <a>@Html.ActionLink("Get Courses", "Index", "cours")</a>
+                    </div>
+                    <div class="Button">
+                        <a>@Html.ActionLink("Add Courses", "Create", "cours")</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-6">
+                <div class="login-page">
+                    <img height="200" width="300" src='~/Assets/Departments.jfif' />
+                    <div class="Button">
+                        <a>@Html.ActionLink("Add Department", "Create", "departments")</a>
+                    </div>
+                    <div class="Button">
+                        <a>@Html.ActionLink("Get Departments", "Index", "departments")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-xl-4 col-md-4 col-sm-6">
+                <div class="login-page">
+                    <img height="200" width="300" src='~/Assets/Teachers.jfif' />
+                    <div class="Button">
+                        <a>@Html.ActionLink("Add Teachers", "Create", "Teachers")</a>
+                    </div>
+                    <div class="Button">
+                        <a>@Html.ActionLink("Get Teachers", "Index", "Teachers")</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-6">
+                <div class="login-page">
+                    <img height="200" width="300" src='~/Assets/Registration.jfif' />
+                    <div class="Button">
+                        <a>@Html.ActionLink("Registered Students", "Index", "registratons")</a>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+    
+    
+}

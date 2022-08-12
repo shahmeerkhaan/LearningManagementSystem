@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LearningManagementSystem.Models.Multiclass>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+
+
+    body {
+        color: white;
+        margin-top: 20px;
+        background-color: #091b1a;
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+</style>
+<h1>Details</h1>
+<table class="table">
+    <tr>
+        <td>
+            CourseId
+        </td>
+        <td>
+            Course Name
+        </td>
+        <td>
+            CreditHours
+        </td>
+        <td>
+            Teacherid
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Registraton.Regid</td>
+            <td>@item.Registraton.Cid</td>
+            <td>@item.Registraton.cours.Cname</td>
+            <td>@item.Registraton.Tid</td>
+
+        </tr>
+    }
+</table>
+<div style="background-color:black;margin-top:10px; width:12%;padding:8px;margin-left:10px;text-align:center">
+    <a>@Html.ActionLink("Back To main", "Index", "StudentsHomepage")</a>
+</div>
+
+

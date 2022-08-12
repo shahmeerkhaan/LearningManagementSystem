@@ -1,0 +1,50 @@
+﻿@model LearningManagementSystem.Models.registraton
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>registraton</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cours.Cname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cours.Cname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.DepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.StdName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.StdName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.TName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.TName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Regid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
